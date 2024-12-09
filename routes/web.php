@@ -25,6 +25,11 @@ Route::post('/appointments/book', [PatientController::class, 'bookAppointment'])
 Route::get('/appointments/doctors', [PatientController::class, 'showAvailableDoctors'])
     ->name('appointments.showDoctors');
 
+Route::put('/horarios/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
+Route::delete('/horarios/{id}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
+Route::patch('/horarios/{id}/restore', [ScheduleController::class, 'restore'])->name('schedule.restore');
+
+
 
 
 Route::get('/user/appointments', [PatientController::class, 'showAppointments'])->name('user.appointments');
