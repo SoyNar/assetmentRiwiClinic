@@ -1,20 +1,27 @@
-<!-- resources/views/admin/generate_schedule.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar Horario</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>Generar Horario - Administrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="container mt-5">
-    <h1 class="mb-4">Generar Horario para Médico</h1>
-    <form action="{{ route('show.allschedule') }}" method="POST">
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center">
+<div class="w-full max-w-md bg-white shadow-2xl rounded-xl overflow-hidden">
+    <div class="bg-blue-600 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Generar Horario Médico</h1>
+    </div>
+
+    <form action="{{ route('show.allschedule') }}" method="POST" class="p-8 space-y-6">
         @csrf
-        <div class="mb-3">
-            <label for="doctor_id" class="form-label">Seleccionar Médico</label>
-            <select name="doctor_id" id="doctor_id" class="form-select" required>
+        <div>
+            <label for="doctor_id" class="block text-gray-700 font-semibold mb-2">Seleccionar Médico</label>
+            <select
+                name="doctor_id"
+                id="doctor_id"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+            >
                 <option value="">Seleccione un médico</option>
                 @foreach($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
@@ -22,25 +29,50 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="start_time" class="form-label">Hora de Inicio</label>
-            <input type="time" name="start_time" id="start_time" class="form-control" required>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <label for="start_time" class="block text-gray-700 font-semibold mb-2">Hora de Inicio</label>
+                <input
+                    type="time"
+                    name="start_time"
+                    id="start_time"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                >
+            </div>
+            <div>
+                <label for="end_time" class="block text-gray-700 font-semibold mb-2">Hora de Fin</label>
+                <input
+                    type="time"
+                    name="end_time"
+                    id="end_time"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                >
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="end_time" class="form-label">Hora de Fin</label>
-            <input type="time" name="end_time" id="end_time" class="form-control" required>
+        <div>
+            <label for="consultation_duration" class="block text-gray-700 font-semibold mb-2">Duración de la Cita (minutos)</label>
+            <input
+                type="number"
+                name="consultation_duration"
+                id="consultation_duration"
+                min="5"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+            >
         </div>
 
-        <div class="mb-3">
-            <label for="duration" class="form-label">Duración de la Cita (en minutos)</label>
-            <input type="number" name="duration" id="duration" class="form-control" min="5" required>
+        <div class="text-center">
+            <button
+                type="submit"
+                class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+            >
+                Generar Horarios
+            </button>
         </div>
-
-        <button type="submit" class="btn btn-primary">Generar Horarios</button>
     </form>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

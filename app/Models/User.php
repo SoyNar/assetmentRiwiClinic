@@ -24,6 +24,9 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
     use SoftDeletes;
 
+
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,11 +36,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'speciality',
+        'spelciality',
         'address',
         'document',
 
     ];
+
+    public function medicalAppointments()
+    {
+        return $this->hasMany(MedicalAppoinments::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -72,4 +80,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 }

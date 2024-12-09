@@ -7,37 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class MedicalAppoinments extends Model
 {
+    protected $table = 'medical_appointments';
     protected $fillable = [
         'note',
-        'appointment_Date',
+        'appointment_date',
         'start_time',
         'end_time',
         'status',
         'reason',
     ];
 
-//Duración fija de 40 minutos
-    protected static function boot()
+    public function user()
     {
-        parent::boot();
-
-        static::creating(function ($appointment) {
-            $appointment->end_time = Carbon::parse($appointment->start_time)
-                ->addMinutes(40)
-                ->format('Y-m-d H:i:s');
-        });
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Validación de disponibilidad
-    public function checkAvailability()
+    public function doctor()
     {
-        // Verificar que no haya otras citas en el mismo intervalo
-        return !MedicalAppoinments::where('doctor_id', $this->doctor_id)
-            ->where(function($query) {
-                $query->whereBetween('start_time', [$this->start_time, $this->end_time])
-                    ->orWhereBetween('end_time', [$this->start_time, $this->end_time]);
-            })
-            ->exists();
+        return $this->belongsTo(User::class, 'doctor_id');
     }
 
 }
