@@ -9,8 +9,7 @@ class Schedule extends Model
     protected $fillable = [
         'start_time',
         'end_time',
-        'start_time',
-        'minutes_interval',
+        'duration',
 
     ];
 }
