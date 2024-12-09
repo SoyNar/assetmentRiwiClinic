@@ -11,14 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedule', function (Blueprint $table) {
+        Schema::create('medical_appointments', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->string('note')->nullable();
+            $table->date('appointment_date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending');
+            $table->string('reason');
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
@@ -27,8 +32,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('schedule', function (Blueprint $table) {
-            //
+        Schema::table('medical_appointments', function (Blueprint $table) {
+            $table->dropForeign(['user_id']); // Elimina la clave foránea
+            $table->dropColumn('user_id');   // Elimina la columna user_id
         });
+
+        Schema::dropIfExists('medical_appointments'); // Eli
+
     }
 };

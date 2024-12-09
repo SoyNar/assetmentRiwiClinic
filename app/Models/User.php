@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -19,8 +20,12 @@ class User extends Authenticatable
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+    use HasRoles;
     use TwoFactorAuthenticatable;
     use SoftDeletes;
+
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -31,11 +36,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'speciality',
+        'spelciality',
         'address',
         'document',
 
     ];
+
+    public function medicalAppointments()
+    {
+        return $this->hasMany(MedicalAppoinments::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -70,4 +80,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 }
