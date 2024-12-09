@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medical_appointments', function (Blueprint $table) {
+        Schema::create('schedule', function (Blueprint $table) {
             $table->id();
-            $table->string('note')->nullable();
-            $table->date('appointment_date');
+            $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->enum('status', ['pending', 'confirmed', 'canceled'])->default('pending');
-            $table->string('reason');
+            $table->integer('consultation_duration')->default(30);
+            $table->json('days_of_work')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 
@@ -31,9 +29,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('medical_appointments', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+
+        Schema::table('schedule', function (Blueprint $table) {
+            $table->dropForeign(['user_id']); // Elimina la clave foránea
         });
+
+        Schema::dropIfExists('schedule'); // Elimina la tabla
+        Schema::dropIfExists('users');
     }
 };
