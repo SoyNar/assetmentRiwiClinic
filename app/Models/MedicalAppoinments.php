@@ -15,6 +15,9 @@ class MedicalAppoinments extends Model
         'end_time',
         'status',
         'reason',
+        'symptoms',
+        'medications',
+        'treatment'
     ];
 
     public function user()
@@ -27,4 +30,8 @@ class MedicalAppoinments extends Model
         return $this->belongsTo(User::class, 'doctor_id');
     }
 
+    public function appointmentHistory()
+    {
+        return $this->belongsTo(AppoinmentsHistory::class);
+    }
 }

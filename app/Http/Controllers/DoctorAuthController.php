@@ -23,7 +23,7 @@ class DoctorAuthController extends Controller
             'name'=> $request->validated()['name'],
             'email' => $request->validated()['email'],
             'password' => Hash::make($request->validated()['password']),
-            'spelciality' => $request->validated()['spelciality'],
+            'speciality' => $request->validated()['speciality'],
             'address' => $request->validated()['address'],
             'document' => $request->validated()['document'],
         ]);
@@ -33,4 +33,6 @@ class DoctorAuthController extends Controller
         return redirect()->route('login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
 
     }
+
+
 }

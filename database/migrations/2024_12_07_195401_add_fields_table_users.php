@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('spelciality');
+            $table->string('speciality')->nullable();
             $table->string('address')->nullable();
             $table->boolean('active')->default(true);
-            $table->boolean('document')->unique();
+            $table->string('document')->unique();
             $table->softDeletes();
 
 

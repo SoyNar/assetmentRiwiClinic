@@ -48,7 +48,7 @@ class ScheduleController extends Controller
         $schedule->start_time = $horaInicio->format('H:i');
         $schedule->end_time = $horaFin->format('H:i');
         $schedule->consultation_duration = $duracionCita;
-        $schedule->available = true;
+
         $schedule->save();
 
         return redirect()->route('schedules.index')->with('success', 'Horario creado exitosamente.');
@@ -62,8 +62,7 @@ class ScheduleController extends Controller
         $request->validate([
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'consultation_duration' => 'required|integer|min:1',
-            'available' => 'required|boolean',
+            'consultation_duration' => 'required|integer|min:1'
         ]);
 
         $horario = Schedule::findOrFail($id);

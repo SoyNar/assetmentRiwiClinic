@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- Círculo exterior -->
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#2563eb" stroke-width="4"/>
+    
+    <!-- Símbolo de salud estilizado -->
+    <path d="M100 40 L100 160 M40 100 L160 100" 
+          stroke="#2563eb" 
+          stroke-width="12" 
+          stroke-linecap="round"/>
+    
+    <!-- Arco decorativo -->
+    <path d="M60 60 A 40 40 0 0 1 140 60" 
+          fill="none" 
+          stroke="#2563eb" 
+          stroke-width="4"/>
+    
+    <!-- Letra A estilizada -->
+    <path d="M85 130 L100 100 L115 130" 
+          fill="none" 
+          stroke="#1d4ed8" 
+          stroke-width="6" 
+          stroke-linecap="round"/>
+    
+    <!-- Puntos decorativos -->
+    <circle cx="70" cy="110" r="4" fill="#1d4ed8"/>
+    <circle cx="130" cy="110" r="4" fill="#1d4ed8"/>
+</svg>

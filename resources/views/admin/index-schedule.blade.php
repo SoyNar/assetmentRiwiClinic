@@ -28,7 +28,6 @@
                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hora de Inicio</th>
                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hora de Fin</th>
                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Duración de Consulta</th>
-                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Disponibilidad</th>
                     <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                 </tr>
                 </thead>
@@ -39,14 +38,10 @@
                         <td class="px-4 py-4">{{ $horario->start_time }}</td>
                         <td class="px-4 py-4">{{ $horario->end_time }}</td>
                         <td class="px-4 py-4">{{ $horario->consultation_duration }} minutos</td>
-                        <td class="px-4 py-4">
-                            <span class="{{ $horario->available ? 'text-green-600' : 'text-red-600' }}">
-                                {{ $horario->available ? 'Disponible' : 'No disponible' }}
-                            </span>
-                        </td>
+
                         <td class="px-4 py-4 flex space-x-2">
                             <button
-                                onclick="openModal('edit', {{ $horario->id }}, '{{ $horario->start_time }}', '{{ $horario->end_time }}', {{ $horario->consultation_duration }}, {{ $horario->available ? 'true' : 'false' }})"
+                                onclick="openModal('edit', {{ $horario->id }}, '{{ $horario->start_time }}', '{{ $horario->end_time }}', {{ $horario->consultation_duration }})"
                                 class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
                             >
                                 Editar

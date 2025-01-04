@@ -25,7 +25,7 @@ class RegisterDoctorRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'spelciality' => 'required|string|max:255',
+            'speciality' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'document' => 'required|string|max:20|unique:users',
         ];
@@ -41,7 +41,7 @@ class RegisterDoctorRequest extends FormRequest
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed' => 'Las contraseñas no coinciden.',
-            'spelciality.required' => 'La especialidad es obligatoria.',
+            'speciality.required' => 'La especialidad es obligatoria.',
             'address.required' => 'La dirección es obligatoria.',
             'document.required' => 'El documento de identidad es obligatorio.',
             'document.unique' => 'Este documento ya está registrado.',

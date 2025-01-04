@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('schedule', function (Blueprint $table) {
-            $table->boolean('available')->default(true);
-            $table->dropColumn('days_of_work');
-            $table->dropColumn('date');
-
+        Schema::table('medical_appointments', function (Blueprint $table) {
+            $table->string('symptoms')->nullable();
+            $table->string('medications')->nullable();
+            $table->string('treatment')->nullable();
         });
     }
 
@@ -24,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('schedule', function (Blueprint $table) {
+        Schema::table('medical_appointments', function (Blueprint $table) {
             //
         });
     }

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('medical_appointments', function (Blueprint $table) {
-            $table->unsignedBigInteger('doctor_id');
-            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('status', ['pending', 'confirmed', 'canceled', 'attended'])
+                ->default('pending')
+                ->change();
         });
-
     }
 
     /**

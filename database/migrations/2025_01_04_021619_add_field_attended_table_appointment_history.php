@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('schedule', function (Blueprint $table) {
-            $table->date('date');
+        Schema::table('appointments_history', function (Blueprint $table) {
+            $table->timestamps();
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('schedule', function (Blueprint $table) {
+        Schema::table('appointments_history', function (Blueprint $table) {
             //
         });
     }

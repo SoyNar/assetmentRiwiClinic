@@ -1,14 +1,14 @@
 <?php
 
-//use App\Http\Controllers\DoctorAvailableController;
 use App\Http\Controllers\DoctorAuthController;
+use App\Http\Controllers\DoctorAvailableController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 //Route::get('/schedule', [DoctorAvailableController::class, 'generateSchedule'])->name('generate-schedule');
@@ -39,6 +39,13 @@ Route::get('/user/appointments', [PatientController::class, 'showAppointments'])
 Route::get('/register-doctor', [DoctorAuthController::class, 'showFormRegister'])->name('register.show-doctor');
 Route::post('/register-doctor', [DoctorAuthController::class, 'registerDoctor'])->name('register.doctor');
 
+// ruta para mostrar todas las citas que tiene pendientes una doctora
+Route::get('/appointment/pending',[DoctorAvailableController::class, 'showAppointmentDoctor'])->name('appointment.show-doctor');
+Route::post('appointment/cancel',[DoctorAvailableController::class,'appointmentCancel'])->name('appointment.cancel');
+
+// registrar atencion de la cita
+Route::get('attention/{appointmentId}',[DoctorAvailableController::class,'showRegisterAttention'])->name('appointment.showRegisterAttention');
+Route::post('attention/{appointmentId}', [DoctorAvailableController::class, 'registerAttention'])->name('appointment.registerAttention');
 
 Route::middleware([
     'auth:sanctum',
