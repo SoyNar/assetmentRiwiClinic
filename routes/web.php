@@ -47,6 +47,12 @@ Route::post('appointment/cancel',[DoctorAvailableController::class,'appointmentC
 Route::get('attention/{appointmentId}',[DoctorAvailableController::class,'showRegisterAttention'])->name('appointment.showRegisterAttention');
 Route::post('attention/{appointmentId}', [DoctorAvailableController::class, 'registerAttention'])->name('appointment.registerAttention');
 
+
+//administrar usuarios
+
+Route::resource('users',\App\Http\Controllers\AdminController::class)
+    ->except('show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
